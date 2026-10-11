@@ -48,3 +48,18 @@ h1,h2,h3,.artist-name{font-weight:500;letter-spacing:-.035em}
 .sparkle-beam.narrow{left:37.5%;width:25%;height:3px;background:linear-gradient(to right,transparent,#0ea5e9,transparent);box-shadow:0 0 8px #0ea5e9}
 @media(max-width:768px){.clips-grid{gap:0}.category-caption h2{font-size:17px}}
 @media(prefers-reduced-motion:reduce){.selection-effect{display:none}}
+
+/* Selection remains entirely outside the image rectangle. */
+.category-item,.clip{position:relative}.category-item:focus-within,.clip:focus-within{z-index:10}
+.thumbnail-frame,.clip-media{transition:transform .24s ease;transform-origin:center;overflow:visible}
+.selection-effect{overflow:visible;inset:0;border-radius:inherit}
+.selection-border{position:absolute;inset:-2px;padding:2px;border-radius:inherit;background:linear-gradient(115deg,#0894ff,#c959dd,#ff2e54,#ff9004);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude}
+.selection-outward{position:absolute;inset:-48px;padding:48px;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;pointer-events:none}
+.selection-outward .sparkle-canvas{inset:0;width:100%;height:100%}
+.category-link:focus-visible .thumbnail-frame,.clip-media:focus-visible{transform:scale(1.2)}
+@media(hover:hover) and (pointer:fine){.category-item:hover,.clip:hover{z-index:10}.category-link:hover .thumbnail-frame,.clip-media:hover{transform:scale(1.2)}.category-link:hover .thumbnail-image img{transform:none}}
+.clip-media>video,.clip-media>img{border-radius:inherit}.clip-status{display:none}
+.video-viewer{position:fixed;inset:0;width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;padding:48px;border:0;background:#000;color:white;overflow:hidden}
+.video-viewer::backdrop{background:#000}.viewer-content{width:100%;height:100%;display:grid;place-items:center}.viewer-content iframe,.viewer-content video{width:100%;height:100%;border:0;object-fit:contain}
+.viewer-close{position:absolute;z-index:2;right:12px;top:8px;width:40px;height:40px;border:1px solid #ffffff44;border-radius:50%;background:#111;color:white;font-size:22px}.viewer-open{overflow:hidden}
+@media(prefers-reduced-motion:reduce){.thumbnail-frame,.clip-media{transition:none}}
