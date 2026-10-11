@@ -30,7 +30,7 @@ GitHub Pages용 정적 웹사이트입니다. 빌드나 패키지 설치 없이 
 ## 효과 컴포넌트
 
 - 게임/영상 카드: GlowEffect (static 컬러 Glow)
-- 배경: SparklesCore (낮은 밀도, 30fps, reduced-motion 대응)
+- 배경: 첨부 원본 SparklesPreview(Acme)와 SparklesCore. 입자 밀도 1200, 120fps, 원본 광선 및 마스크 설정.
 - 빌드된 effects.js와 effects.css를 사용합니다.
 - React/TypeScript/Tailwind 원본과 재빌드 방법은 effects-source.zip에 포함되어 있습니다.
 
