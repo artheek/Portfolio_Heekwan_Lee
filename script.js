@@ -12,7 +12,7 @@ const grid=document.querySelector('#clips-grid');
 const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
 (window.portfolioVideos||[]).forEach((item,index)=>{
   const article=document.createElement('article');article.className='clip';
-  const media=document.createElement(item.url?'a':item.preview?'button':'div');media.className='clip-media';
+  const media=document.createElement(item.url?'a':item.preview?'button':'div');media.className='clip-media';media.setAttribute('aria-label',item.preview?item.title:`${item.title} · 영상 추가 예정`);
   if(item.url){media.href=item.url;media.target='_blank';media.rel='noopener noreferrer';media.setAttribute('aria-label',`${item.title} 영상 보기, 새 탭`);}
   const label=document.createElement('div');label.className='clip-label';
   const title=document.createElement('h3');title.textContent=item.title;
@@ -31,7 +31,7 @@ const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
     new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)stop();}).observe(media);
     document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
   }else if(!item.poster){
-    const empty=document.createElement('div');empty.className='clip-empty';empty.innerHTML='<svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="6" width="26" height="20" rx="3"/><path d="m13 11 8 5-8 5z"/></svg><span>영상 추가 예정</span>';media.append(empty);
+    const empty=document.createElement('div');empty.className='clip-empty';empty.innerHTML='<svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="6" width="26" height="20" rx="3"/><path d="m13 11 8 5-8 5z"/></svg>';media.append(empty);
   }
-  article.append(media,label);grid.append(article);
+  article.append(media);grid.append(article);
 });
