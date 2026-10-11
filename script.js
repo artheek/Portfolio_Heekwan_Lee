@@ -35,3 +35,38 @@ const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
   }
   article.append(media);grid.append(article);
 });
+// Opening reel: local video first, YouTube fallback until a source file is supplied.
+const opening=document.querySelector('.opening-reel');
+const heroMount=document.querySelector('#hero-player');
+const pauseButton=document.querySelector('#hero-pause');
+const heroConfig=window.portfolioHero||{};
+let heroPause=()=>{},heroResume=()=>{},userPaused=false,heroVisible=true;
+function playing(){opening.classList.add('is-playing');opening.dataset.playback='playing';pauseButton.hidden=false;}
+function unavailable(){opening.classList.remove('is-playing');opening.dataset.playback='unavailable';pauseButton.hidden=true;}
+if(heroConfig.poster)document.querySelector('.hero-poster').src=heroConfig.poster;
+if(!reducedMotion.matches){
+ if(heroConfig.src){
+  const video=document.createElement('video');video.src=heroConfig.src;video.muted=true;video.autoplay=true;video.loop=true;video.playsInline=true;video.preload='auto';video.tabIndex=-1;heroMount.append(video);
+  video.addEventListener('playing',playing);video.addEventListener('error',unavailable);
+  heroPause=()=>video.pause();heroResume=()=>{video.play().catch(unavailable);};heroResume();
+ }else if(heroConfig.youtubeId){
+  const target=document.createElement('div');target.id='youtube-hero';heroMount.append(target);
+  window.onYouTubeIframeAPIReady=()=>{
+   const player=new window.YT.Player('youtube-hero',{videoId:heroConfig.youtubeId,playerVars:{autoplay:1,mute:1,controls:0,playsinline:1,loop:1,playlist:heroConfig.youtubeId,rel:0,disablekb:1,iv_load_policy:3,origin:location.origin},events:{
+    onReady:()=>{player.mute();if(heroVisible&&!userPaused&&!reducedMotion.matches)player.playVideo();const frame=player.getIframe();frame.tabIndex=-1;frame.title='무음 포트폴리오 배경 영상';},
+    onStateChange:event=>{if(event.data===1){playing();if(!heroVisible||userPaused||reducedMotion.matches)player.pauseVideo();}},
+    onError:unavailable
+   }});
+   heroPause=()=>{if(typeof player.pauseVideo==='function')player.pauseVideo();};heroResume=()=>{if(typeof player.playVideo==='function'){player.mute();player.playVideo();}};
+  };
+  const api=document.createElement('script');api.src='https://www.youtube.com/iframe_api';api.onerror=unavailable;document.head.append(api);
+ }
+}
+pauseButton.addEventListener('click',()=>{userPaused=!userPaused;pauseButton.textContent=userPaused?'재생':'일시정지';userPaused?heroPause():heroResume();});
+new IntersectionObserver(entries=>{heroVisible=entries[0].isIntersecting;if(!heroVisible)heroPause();else if(!userPaused&&!reducedMotion.matches)heroResume();},{threshold:.1}).observe(opening);
+document.addEventListener('visibilitychange',()=>{if(document.hidden)heroPause();else if(heroVisible&&!userPaused&&!reducedMotion.matches)heroResume();});
+reducedMotion.addEventListener('change',()=>{if(reducedMotion.matches){heroPause();opening.classList.remove('is-playing');pauseButton.hidden=true;}});
+if(!reducedMotion.matches){
+ const reveal=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.remove('reveal-wait');reveal.unobserve(entry.target);}}),{threshold:.08});
+ document.querySelectorAll('.portfolio-title,.category-item,.clip,.about-grid').forEach(el=>{el.classList.add('reveal-item','reveal-wait');reveal.observe(el);});
+}

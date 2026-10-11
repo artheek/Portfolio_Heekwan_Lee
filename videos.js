@@ -8,3 +8,6 @@ window.portfolioVideos = [
   {title:'영상 작업 02', category:'Film', preview:'', poster:'', url:''},
   {title:'영상 작업 03', category:'Film', preview:'', poster:'', url:''}
 ];
+
+// Set this to the supplied MP4/WebM file for reliable muted hero autoplay.
+window.portfolioHero = {src:'',poster:'https://i.ytimg.com/vi/g9bOLQV_CiQ/maxresdefault.jpg',youtubeId:'g9bOLQV_CiQ'};

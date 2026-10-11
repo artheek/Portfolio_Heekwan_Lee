@@ -33,3 +33,7 @@ GitHub Pages용 정적 웹사이트입니다. 빌드나 패키지 설치 없이 
 - 배경: SparklesCore (낮은 밀도, 30fps, reduced-motion 대응)
 - 빌드된 effects.js와 effects.css를 사용합니다.
 - React/TypeScript/Tailwind 원본과 재빌드 방법은 effects-source.zip에 포함되어 있습니다.
+
+## 첫 화면 영상
+
+`videos.js`의 `portfolioHero.src`에 MP4/WebM을 지정하면 해당 원본을 무음 자동재생합니다. 비어 있으면 기존 YouTube 쇼릴을 무음 자동재생합니다. 스크롤로 화면을 벗어나면 정지하며, 동작 줄이기 설정에서는 자동재생하지 않습니다. 제목 서체는 Cormorant Garamond와 Noto Serif KR입니다.
