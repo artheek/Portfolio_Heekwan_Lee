@@ -27,3 +27,9 @@ GitHub Pages용 정적 웹사이트입니다. 빌드나 패키지 설치 없이 
 ## 개별 영상 추가
 
 `videos.js`에서 각 항목의 `preview`(짧은 MP4/WebM), `poster`(대표 이미지), `url`(전체 영상)을 입력합니다. 영상 칸은 데스크톱 3열, 태블릿 2열, 모바일 1열입니다. 파일이 없는 항목은 추가 예정으로 표시합니다. 미리보기는 무음 반복 재생되며 마우스가 벗어나거나 키보드 포커스가 이동하면 정지합니다. 동작 줄이기 설정에서는 자동 재생하지 않습니다.
+## 효과 컴포넌트
+
+- 게임/영상 카드: GlowEffect (static 컬러 Glow)
+- 배경: SparklesCore (낮은 밀도, 30fps, reduced-motion 대응)
+- 빌드된 effects.js와 effects.css를 사용합니다.
+- React/TypeScript/Tailwind 원본과 재빌드 방법은 effects-source.zip에 포함되어 있습니다.
