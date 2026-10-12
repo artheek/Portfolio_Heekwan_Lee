@@ -44,7 +44,7 @@ const stopPreviews=[];
  const button=document.createElement('button');button.type='button';button.className='clip-media';button.setAttribute('aria-label',`Play ${item.title}`);button.setAttribute('aria-haspopup','dialog');
  const img=document.createElement('img');img.src=item.poster;img.alt='';img.loading='lazy';button.append(img);
  const video=document.createElement('video');video.muted=true;video.loop=true;video.playsInline=true;video.preload='none';video.setAttribute('aria-hidden','true');button.append(video);
- video.addEventListener('loadedmetadata',()=>{video.currentTime=6;},{once:true});
+ video.addEventListener('loadedmetadata',()=>{video.currentTime=item.previewStart||0;},{once:true});
  let wanted=false;
  const stop=()=>{wanted=false;video.pause();video.stream?.stopLoad();button.classList.remove('previewing');button.dataset.playback='paused';};stopPreviews.push(stop);
  const play=()=>{if(reducedMotion.matches||viewer.open)return;wanted=true;attachSource(video,item.preview);video.stream?.startLoad(-1);video.play().catch(()=>{});};
