@@ -5,8 +5,8 @@
   <title>이희관 · Heekwan Lee — VFX Artist</title>
   <meta name="description" content="이희관의 VFX 포트폴리오. Unreal Engine 기반 리얼타임 이펙트와 Houdini 기반 영상 VFX 작업을 소개합니다.">
   <meta name="theme-color" content="#000000"><meta property="og:title" content="Heekwan Lee — VFX Artist"><meta property="og:description" content="Real-time effects. Cinematic sensibility. Unreal Engine × Houdini."><meta property="og:type" content="website">
-  <link rel="icon" href="favicon.svg?v=20261012-9" type="image/svg+xml"><link rel="stylesheet" href="style.css?v=20261012-9"><script src="videos.js?v=20261012-9" defer></script><script src="script.js?v=20261012-9" defer></script>
-<link rel="stylesheet" href="effects.css?v=9"><script type="module" src="effects.js?v=9"></script>
+  <link rel="icon" href="favicon.svg?v=20261013-11" type="image/svg+xml"><link rel="stylesheet" href="style.css?v=20261013-11"><script src="hls.min.js" defer></script><script src="videos.js?v=20261013-11" defer></script><script src="script.js?v=20261013-11" defer></script>
+<link rel="stylesheet" href="effects.css?v=10"><script type="module" src="effects.js?v=10"></script>
 </head>
 <body>
 
@@ -15,14 +15,15 @@
   <main id="main">
     <section class="opening-reel" aria-label="포트폴리오 영상">
       <div id="hero-player" class="hero-player" aria-hidden="true"></div>
-      <img class="hero-poster" src="https://i.ytimg.com/vi/g9bOLQV_CiQ/maxresdefault.jpg" alt="이희관 포트폴리오 대표 장면" fetchpriority="high">
-      <div class="hero-caption"><h1>Heekwan Lee</h1><p>VFX Portfolio</p></div>
-      <div class="hero-controls"><button id="hero-pause" type="button" hidden>일시정지</button><a href="https://www.youtube.com/watch?v=g9bOLQV_CiQ" target="_blank" rel="noopener noreferrer">전체 영상 ↗</a></div>
+      <img class="hero-poster" src="reel-poster.jpg" alt="이희관 포트폴리오 대표 장면" fetchpriority="high">
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="hero-caption"><p>REALTIME &amp; CINEMATIC</p><h1>Heekwan Lee<span>VFX Portfolio</span></h1></div>
+      <div class="hero-controls"><button id="hero-pause" type="button" aria-label="Pause background video" hidden></button><button id="hero-full" type="button" aria-label="Play full reel in fullscreen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/><path d="m10 8 6 4-6 4z"/></svg></button></div>
       <a class="scroll-cue" href="#work" aria-label="포트폴리오 목록 보기">↓</a>
     </section>
     <section id="work" class="portfolio-section"><div class="container">
-      <div class="portfolio-title"><div><h2>Portfolio <span>이희관</span></h2><p>Unreal Engine · Houdini</p></div><a class="reel-link" href="https://www.youtube.com/watch?v=g9bOLQV_CiQ" target="_blank" rel="noopener noreferrer">전체 영상 ↗</a></div>
-      <div class="category-grid"><article class="category-item"><a class="category-link" href="https://www.youtube.com/watch?v=g9bOLQV_CiQ&t=0s" target="_blank" rel="noopener noreferrer"><div class="glow-card thumbnail-frame"><div class="glow-mount" aria-hidden="true"></div><div class="thumbnail-image"><img src="https://i.ytimg.com/vi/g9bOLQV_CiQ/maxresdefault.jpg" alt="포트폴리오 쇼릴 대표 썸네일" loading="eager"><span class="thumbnail-play" aria-hidden="true">▶</span></div></div><div class="category-caption"><h2>Realtime VFX</h2><span>00:00–01:10 ↗</span></div></a></article><article class="category-item"><a class="category-link" href="https://www.youtube.com/watch?v=g9bOLQV_CiQ&t=70s" target="_blank" rel="noopener noreferrer"><div class="glow-card thumbnail-frame"><div class="glow-mount" aria-hidden="true"></div><div class="thumbnail-image"><img src="https://i.ytimg.com/vi/g9bOLQV_CiQ/maxresdefault.jpg" alt="포트폴리오 쇼릴 대표 썸네일" loading="eager"><span class="thumbnail-play" aria-hidden="true">▶</span></div></div><div class="category-caption"><h2>Film VFX</h2><span>01:10–02:27 ↗</span></div></a></article></div>
+      <div class="portfolio-title"><div><h2>Portfolio <span>이희관</span></h2><p>Unreal Engine · Houdini</p></div><a class="reel-link" href="reel-4k.m3u8" aria-haspopup="dialog">전체 영상 ↗</a></div>
+      <div class="category-grid"><article class="category-item"><a class="category-link" href="https://www.youtube.com/watch?v=g9bOLQV_CiQ&t=0s" target="_blank" rel="noopener noreferrer"><div class="glow-card thumbnail-frame"><div class="glow-mount" aria-hidden="true"></div><div class="thumbnail-image"><img src="reel-poster.jpg" alt="포트폴리오 쇼릴 대표 썸네일" loading="eager"><span class="thumbnail-play" aria-hidden="true">▶</span></div></div><div class="category-caption"><h2>Realtime VFX</h2><span>00:00–01:10 ↗</span></div></a></article><article class="category-item"><a class="category-link" href="https://www.youtube.com/watch?v=g9bOLQV_CiQ&t=70s" target="_blank" rel="noopener noreferrer"><div class="glow-card thumbnail-frame"><div class="glow-mount" aria-hidden="true"></div><div class="thumbnail-image"><img src="reel-poster.jpg" alt="포트폴리오 쇼릴 대표 썸네일" loading="eager"><span class="thumbnail-play" aria-hidden="true">▶</span></div></div><div class="category-caption"><h2>Film VFX</h2><span>01:10–02:27 ↗</span></div></a></article></div>
       <div class="clips-grid" id="clips-grid" aria-label="개별 작업 영상"></div>
       <noscript><p>개별 작업 영상은 추가 예정입니다. 위 링크에서 전체 포트폴리오를 확인할 수 있습니다.</p></noscript>
     </div></section>
@@ -31,3 +32,4 @@
   <footer id="contact"><div class="container"><span class="eyebrow">CONTACT</span><div class="footer-main"><div><h2>연락처</h2><p>게임 이펙트 · 게임 시네마틱 VFX</p></div><a class="pill footer-cta" href="mailto:chimac99@naver.com">chimac99@naver.com ↗</a></div><div class="footer-bottom"><span>© <span id="year">2026</span> HEEKWAN LEE</span><a href="https://www.youtube.com/watch?v=g9bOLQV_CiQ" target="_blank" rel="noopener noreferrer">YouTube ↗</a><a href="#">맨 위로 ↑</a></div></div></footer>
 </body>
 </html>
+

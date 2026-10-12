@@ -63,3 +63,33 @@ h1,h2,h3,.artist-name{font-weight:500;letter-spacing:-.035em}
 .video-viewer::backdrop{background:#000}.viewer-content{width:100%;height:100%;display:grid;place-items:center}.viewer-content iframe,.viewer-content video{width:100%;height:100%;border:0;object-fit:contain}
 .viewer-close{position:absolute;z-index:2;right:12px;top:8px;width:40px;height:40px;border:1px solid #ffffff44;border-radius:50%;background:#111;color:white;font-size:22px}.viewer-open{overflow:hidden}
 @media(prefers-reduced-motion:reduce){.thumbnail-frame,.clip-media{transition:none}}
+
+/* A restrained title composition over the native reel. */
+.hero-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,#0003 0%,#0005 45%,#0009 100%);pointer-events:none}
+.hero-caption{left:8%;right:8%;top:50%;bottom:auto;transform:translateY(-50%);text-align:center;text-shadow:0 2px 24px #0004;pointer-events:none}
+.hero-caption p{font-size:11px;font-weight:500;letter-spacing:.28em;margin:0 0 24px;color:#ffffffb8}
+.hero-caption h1{font-size:clamp(48px,7.4vw,112px);line-height:1;letter-spacing:-.06em;font-weight:500}
+.hero-caption h1 span{display:block;margin-top:16px;font-size:clamp(19px,2.1vw,32px);font-weight:400;letter-spacing:.12em}
+.hero-controls{right:48px;bottom:32px;gap:10px}.hero-controls button{width:46px;height:46px;padding:12px;border-color:#ffffff44;background:#0003;backdrop-filter:blur(8px)}
+.hero-controls svg,.viewer-close svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.hero-controls button:hover{background:#ffffff20;border-color:#ffffff88}.scroll-cue{bottom:32px;border-color:#ffffff44;background:#0003}
+.category-link:focus-visible{outline:none}.category-link:focus-visible .selection-border{padding:3px}
+@media(max-width:768px){.hero-caption{left:24px;right:24px;top:46%;bottom:auto}.hero-caption p{font-size:9px;letter-spacing:.22em;margin-bottom:20px}.hero-caption h1{font-size:clamp(44px,9vw,68px)}.hero-caption h1 span{font-size:18px;margin-top:14px}.hero-controls{right:24px;bottom:24px}.scroll-cue{left:24px;bottom:24px}}
+
+.thumbnail-image video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0}.category-link.previewing .thumbnail-image video{opacity:1}.category-link.previewing .thumbnail-image>img{opacity:0}.category-link.previewing .thumbnail-play{opacity:0}
+
+/* Quiet editorial refinements; the established structure stays intact. */
+:root{--primary:#dce2e9;--section:88px}
+body{background:#0a0b0d;color:#eceef1;-webkit-font-smoothing:antialiased}
+header{background:#0a0b0d;border-bottom:1px solid #ffffff09;padding-left:48px;padding-right:48px}
+.wordmark{font-size:25px;letter-spacing:-.08em}.header-note{color:#7c838e;font-size:9px;letter-spacing:.16em}nav a{font-size:13px;font-weight:400;color:#a6acb6}nav a:hover{color:#fff}
+.hero-shade{background:linear-gradient(180deg,#0004,#0005 45%,#000a)}
+.hero-caption p{color:#c9cdd4;font-size:10px;font-weight:400;letter-spacing:.32em}
+.hero-caption h1{font-weight:400;letter-spacing:-.055em}.hero-caption h1 span{font-size:clamp(17px,1.7vw,26px);letter-spacing:.16em;font-weight:400;color:#d3d6dc;margin-top:22px}
+.hero-controls button,.scroll-cue{border-color:#ffffff2e;background:#0002;box-shadow:none}.hero-controls button{width:42px;height:42px;padding:10px}.scroll-cue{width:42px;height:42px;font-size:20px}
+.portfolio-section{padding:72px 0 88px}.portfolio-title{margin-bottom:36px}.portfolio-title h2{font-size:26px;letter-spacing:-.025em;font-weight:400}.portfolio-title h2 span{font-size:12px;color:#777e89}.portfolio-title p{font-size:12px;color:#777e89;letter-spacing:.02em}.reel-link{font-size:12px;color:#b1b8c3}
+.category-grid{gap:28px}.thumbnail-image,.category-link{border-radius:4px}.thumbnail-image{border-color:#ffffff12}.category-caption{margin-top:20px;transition:transform .24s ease}.category-caption h2{font-size:16px;font-weight:400;letter-spacing:-.015em}.category-caption>span{font-size:10px;letter-spacing:.04em;color:#727985}.thumbnail-play{border-color:#ffffff4a;background:#0004}
+.clips-grid{margin-top:48px;gap:0}.about-section{background:#0e1013;border-top:1px solid #ffffff08;padding:80px 0}.about-label .eyebrow{font-size:10px;color:#939ba6;letter-spacing:.16em}.artist-name{font-size:38px;font-weight:400}.artist-name span{font-size:13px;color:#828b98;margin-top:18px}.about-body h2{font-size:26px;font-weight:400;line-height:1.45}.about-body p{font-size:14px;line-height:1.9;color:#929ba8}.profile dt{font-size:10px;letter-spacing:.06em;color:#727c89}.profile dd{font-size:13px;color:#c1c7d0}
+footer{background:#0a0b0d;border-top:1px solid #ffffff08;padding-top:56px}.footer-main h2{font-size:25px;font-weight:400}.footer-main p{font-size:12px;color:#828b98}.footer-cta{border:1px solid #ffffff26;background:transparent;color:#d7dce4;font-size:14px;font-weight:400;letter-spacing:0}.footer-cta:hover{background:#ffffff08}.footer-bottom{color:#747d89;border-top-color:#ffffff0d;font-size:10px}.footer-bottom a{color:#a5adb8}
+@media(hover:hover) and (pointer:fine){.category-link:hover .category-caption{transform:translateY(14px)}}
+@media(max-width:768px){header{padding:0 24px}.portfolio-section{padding:48px 0 60px}.portfolio-title{margin-bottom:28px}.portfolio-title h2{font-size:25px}.category-grid{gap:24px}.category-caption{gap:6px}.category-caption h2{font-size:15px}.clips-grid{margin-top:36px}.hero-caption h1 span{font-size:17px}.about-section{padding:56px 0}.about-body h2{font-size:24px}}

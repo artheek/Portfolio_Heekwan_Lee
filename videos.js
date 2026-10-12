@@ -1,13 +1,3 @@
-// Add a local MP4/WebM preview, poster, and full video URL to each entry.
-// preview: 'assets/game-01-preview.mp4', poster: 'assets/game-01.jpg', url: 'https://...'
-window.portfolioVideos = [
-  {title:'게임 작업 01', category:'Game', preview:'', poster:'https://i.ytimg.com/vi/g9bOLQV_CiQ/maxresdefault.jpg', url:''},
-  {title:'게임 작업 02', category:'Game', preview:'', poster:'', url:''},
-  {title:'게임 작업 03', category:'Game', preview:'', poster:'', url:''},
-  {title:'영상 작업 01', category:'Film', preview:'', poster:'', url:''},
-  {title:'영상 작업 02', category:'Film', preview:'', poster:'', url:''},
-  {title:'영상 작업 03', category:'Film', preview:'', poster:'', url:''}
-];
-
-// Set this to the supplied MP4/WebM file for reliable muted hero autoplay.
-window.portfolioHero = {src:'',poster:'https://i.ytimg.com/vi/g9bOLQV_CiQ/maxresdefault.jpg',youtubeId:'g9bOLQV_CiQ'};
+// Replace individual entries when the final shot files are ready.
+window.portfolioHero={src:'reel-4k.m3u8',fullSrc:'reel-4k.m3u8',poster:'reel-poster.jpg'};
+window.portfolioVideos=['shot-01.png','shot-02.jpeg','shot-03.jpeg','shot-04.jpeg','shot-05.jpeg'].map((poster,i)=>({title:`VFX shot ${i+1}`,preview:'reel-2k.m3u8',src:'reel-4k.m3u8',poster}));
