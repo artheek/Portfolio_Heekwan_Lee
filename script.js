@@ -28,9 +28,9 @@ document.body.append(viewer);
 const viewerContent=viewer.querySelector('.viewer-content');
 const hero=document.createElement('video');hero.muted=true;hero.loop=true;hero.playsInline=true;hero.preload='metadata';hero.tabIndex=-1;hero.poster=heroConfig.poster;hero.setAttribute('aria-hidden','true');
 document.querySelector('#hero-player').append(hero);
-hero.addEventListener('loadedmetadata',()=>{hero.currentTime=6;},{once:true});
-hero.addEventListener('timeupdate',()=>{if(hero.currentTime<.2)hero.currentTime=6;});
-function heroResume(){if(!document.hidden&&heroVisible&&!userPaused&&!viewer.open&&!reducedMotion.matches){attachSource(hero,heroConfig.src);hero.stream?.startLoad(-1);hero.play().catch(()=>{});}}
+hero.addEventListener('loadedmetadata',()=>{hero.currentTime=26;},{once:true});
+hero.addEventListener('timeupdate',()=>{if(hero.currentTime<.2)hero.currentTime=26;});
+function heroResume(){if(!document.hidden&&heroVisible&&!userPaused&&!viewer.open&&!reducedMotion.matches){attachSource(hero,heroConfig.src,26);hero.stream?.startLoad(-1);hero.play().catch(()=>{});}}
 hero.addEventListener('playing',()=>{opening.classList.add('is-playing');opening.dataset.playback='playing';pauseButton.hidden=false;});
 hero.addEventListener('error',()=>{opening.classList.remove('is-playing');opening.dataset.playback='unavailable';});
 pauseButton.innerHTML=pauseIcon;pauseButton.setAttribute('aria-label','Pause background video');
