@@ -93,3 +93,13 @@ header{background:#0a0b0d;border-bottom:1px solid #ffffff09;padding-left:48px;pa
 footer{background:#0a0b0d;border-top:1px solid #ffffff08;padding-top:56px}.footer-main h2{font-size:25px;font-weight:400}.footer-main p{font-size:12px;color:#828b98}.footer-cta{border:1px solid #ffffff26;background:transparent;color:#d7dce4;font-size:14px;font-weight:400;letter-spacing:0}.footer-cta:hover{background:#ffffff08}.footer-bottom{color:#747d89;border-top-color:#ffffff0d;font-size:10px}.footer-bottom a{color:#a5adb8}
 @media(hover:hover) and (pointer:fine){.category-link:hover .category-caption{transform:translateY(14px)}}
 @media(max-width:768px){header{padding:0 24px}.portfolio-section{padding:48px 0 60px}.portfolio-title{margin-bottom:28px}.portfolio-title h2{font-size:25px}.category-grid{gap:24px}.category-caption{gap:6px}.category-caption h2{font-size:15px}.clips-grid{margin-top:36px}.hero-caption h1 span{font-size:17px}.about-section{padding:56px 0}.about-body h2{font-size:24px}}
+
+/* Finishing details: quieter controls and clearer hierarchy. */
+.portfolio-title h2{line-height:1.15;letter-spacing:-.035em}.portfolio-title h2 span{margin-left:12px;letter-spacing:0}.portfolio-title p{margin-top:10px;color:#9199a5}
+.category-caption{min-height:24px;align-items:baseline}.category-caption h2{font-weight:500;letter-spacing:-.02em}.category-caption>span{font-variant-numeric:tabular-nums;font-size:10px;color:#949ca7;letter-spacing:.025em}
+.thumbnail-play{width:42px;height:42px;padding:0;background:#10121666;border-color:#ffffff40;backdrop-filter:blur(6px)}.thumbnail-play svg{width:15px;height:15px;margin-left:2px;fill:currentColor}
+.reel-link{gap:8px;color:#c3c9d2;text-underline-offset:5px;transition:color .2s ease}.reel-link:hover{color:#fff;text-decoration:underline}
+.hero-controls button,.scroll-cue,.viewer-close{transition:background .2s ease,border-color .2s ease,color .2s ease}.viewer-close{display:grid;place-items:center;background:#111318b3;border-color:#ffffff2e;backdrop-filter:blur(8px)}.viewer-close:hover{background:#24272d;border-color:#ffffff66}
+.profile>div{padding-top:16px;padding-bottom:16px}.footer-bottom{letter-spacing:.035em}.footer-cta{transition:background .2s ease,border-color .2s ease}.footer-cta:hover{border-color:#ffffff55}
+@media(max-width:768px){.category-caption{min-height:0;align-items:flex-start}.category-caption h2{font-size:15px}.thumbnail-play{width:36px;height:36px}}
+@media(prefers-reduced-motion:reduce){.hero-controls button,.scroll-cue,.viewer-close,.footer-cta,.reel-link{transition:none}}

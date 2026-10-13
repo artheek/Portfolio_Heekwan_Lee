@@ -9,7 +9,7 @@ Static GitHub Pages portfolio. Google Sans typography; hover-only exterior Spark
 - HLS segments are hosted beside the playlists. Keep every referenced .ts file.
 - hls.js provides playback on MSE browsers; Safari uses native HLS when needed.
 - Fullscreen uses the browser Fullscreen API. Embedded browsers without it use a viewport-sized player.
-- Realtime VFX uses GFX_Reel (gfx-4k.m3u8 / gfx-2k.m3u8), starts at 63s for click and preview; preview loops from 63s to the end. Film VFX starts at 70s. Individual shots use their matching 4K MP4 and 2560x1440 muted preview, ordered Arknight_cinematic, basic_slash, fire_slash, SF_FPS, blood_magical.
+- Realtime VFX uses GFX_Reel (gfx-4k.m3u8 / gfx-2k.m3u8), starts at 63s for click and preview; both preview and fullscreen loop back to 0s after the initial 63s start. Film VFX uses Film_Reel (film-4k.m3u8 / film-2k.m3u8), starts and loops at 0s. Individual shots use their matching 4K MP4 and 2560x1440 muted preview, ordered Arknight_cinematic, basic_slash, fire_slash, SF_FPS, blood_magical.
 
 ## Update
 Change videos.js to connect final per-shot preview, full video and poster URLs. MP4/WebM and HLS supported.

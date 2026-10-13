@@ -8,6 +8,6 @@ window.portfolioVideos=[
 ];
 
 window.portfolioCategories=[
-{title:"Realtime VFX",src:"gfx-4k.m3u8",preview:"gfx-2k.m3u8",poster:"realtime-poster.png",start:63},
-{title:"Film VFX",src:"reel-4k.m3u8",preview:"reel-2k.m3u8",poster:"reel-poster.jpg",start:70,previewEnd:146}
+{title:"Realtime VFX",src:"gfx-4k.m3u8",preview:"gfx-2k.m3u8",poster:"realtime-poster.png",start:63,loop:true},
+{title:"Film VFX",src:"film-4k.m3u8",preview:"film-2k.m3u8",poster:"film-poster.png",start:0,loop:true}
 ];

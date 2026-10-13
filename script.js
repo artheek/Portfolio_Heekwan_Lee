@@ -57,9 +57,9 @@ const stopPreviews=[];
  new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)stop();}).observe(button);
  article.append(button);document.querySelector('#clips-grid').append(article);
 });
-function openViewer({src=heroConfig.fullSrc,title='Heekwan Lee VFX Portfolio',start=0,end}){
+function openViewer({src=heroConfig.fullSrc,title='Heekwan Lee VFX Portfolio',start=0,end,loop=false}){
  hero.pause();stopPreviews.forEach(stop=>stop());viewerContent.replaceChildren();viewer.showModal();document.body.classList.add('viewer-open');
- const video=document.createElement('video');video.controls=true;video.autoplay=true;video.playsInline=true;video.preload='auto';video.setAttribute('aria-label',title);viewerContent.append(video);
+ const video=document.createElement('video');video.controls=true;video.autoplay=true;video.loop=loop;video.playsInline=true;video.preload='auto';video.setAttribute('aria-label',title);viewerContent.append(video);
  video.addEventListener('loadedmetadata',()=>{if(start)video.currentTime=start;video.play().catch(()=>{});},{once:true});
  if(end)video.addEventListener('timeupdate',()=>{if(video.currentTime>=end){video.pause();}});
  attachSource(video,src,start);video.play().catch(()=>{});
@@ -80,7 +80,7 @@ document.querySelectorAll('.category-link').forEach((link,i)=>{
  const video=document.createElement('video');video.muted=true;video.playsInline=true;video.preload='none';video.setAttribute('aria-hidden','true');link.querySelector('.thumbnail-image').append(video);
  let wanted=false;
  video.addEventListener('loadedmetadata',()=>{video.currentTime=start;},{once:true});
- video.addEventListener('ended',()=>{if(wanted){video.currentTime=start;video.play().catch(()=>{});}});
+ video.addEventListener('ended',()=>{if(wanted){video.currentTime=0;video.play().catch(()=>{});}});
  video.addEventListener('timeupdate',()=>{if(item.previewEnd&&video.currentTime>=item.previewEnd)video.currentTime=start;});
  const stop=()=>{wanted=false;video.pause();video.stream?.stopLoad();link.classList.remove('previewing');};stopPreviews.push(stop);
  const play=()=>{if(viewer.open||reducedMotion.matches)return;wanted=true;attachSource(video,item.preview,start);if(video.readyState>=1)video.currentTime=start;video.stream?.startLoad(start);video.play().catch(()=>{});};
@@ -88,7 +88,7 @@ document.querySelectorAll('.category-link').forEach((link,i)=>{
  link.addEventListener('pointerenter',play);link.addEventListener('pointerleave',stop);link.addEventListener('focus',play);link.addEventListener('blur',stop);
  new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)stop();}).observe(link);
  document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
- link.addEventListener('click',e=>{e.preventDefault();openViewer({src:item.src,start,end:item.end,title:item.title});});
+ link.addEventListener('click',e=>{e.preventDefault();openViewer({src:item.src,start,end:item.end,loop:item.loop,title:item.title});});
 });
 document.querySelectorAll('#hero-full,.reel-link').forEach(link=>link.addEventListener('click',e=>{e.preventDefault();openViewer({});}));
 if(!reducedMotion.matches){const reveal=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.remove('reveal-wait');reveal.unobserve(entry.target);}}),{threshold:.08});document.querySelectorAll('.portfolio-title,.category-item,.clip,.about-grid').forEach(el=>{el.classList.add('reveal-item','reveal-wait');reveal.observe(el);});}
