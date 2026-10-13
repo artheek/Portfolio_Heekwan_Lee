@@ -6,3 +6,8 @@ window.portfolioVideos=[
 {title:'SF_FPS',preview:'shot-04-2k.mp4',src:'shot-04-4k.mp4',poster:'shot-04.jpeg',previewStart:0},
 {title:'blood_magical',preview:'shot-05-2k.mp4',src:'shot-05-4k.mp4',poster:'shot-05.jpeg',previewStart:0}
 ];
+
+window.portfolioCategories=[
+{title:"Realtime VFX",src:"gfx-4k.m3u8",preview:"gfx-2k.m3u8",poster:"realtime-poster.png",start:63},
+{title:"Film VFX",src:"reel-4k.m3u8",preview:"reel-2k.m3u8",poster:"reel-poster.jpg",start:70,previewEnd:146}
+];
