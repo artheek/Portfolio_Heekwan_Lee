@@ -95,31 +95,27 @@ if(!reducedMotion.matches){const reveal=new IntersectionObserver(entries=>entrie
 heroResume();
 
 
-// A single scroll-linked light ripple connects the opening reel to the work.
+// Scroll-linked focus dissolve: opening reel to the Portfolio section.
 (()=>{
- const opening=document.querySelector('.opening-reel'),grid=document.querySelector('#clips-grid'),cue=document.querySelector('.scroll-cue');
+ const opening=document.querySelector('.opening-reel'),grid=document.querySelector('#work'),cue=document.querySelector('.scroll-cue');
  if(!opening||!grid)return;
  const canvas=document.createElement('canvas');canvas.className='reel-transition';canvas.setAttribute('aria-hidden','true');document.body.append(canvas);
  const ctx=canvas.getContext('2d');if(!ctx)return;
  let width=0,height=0,frame=0,origin=null,travel=false,wheelAmount=0,wheelTimer=0,settleTimer=0;
- const points=Array.from({length:56},(_,i)=>({angle:i*2.399963,speed:.7+(i%7)/12,size:.7+(i%3)*.5}));
  function resize(){width=innerWidth;height=innerHeight;const dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);requestDraw();}
  function destination(){return Math.max(0,grid.getBoundingClientRect().top+scrollY-(innerWidth<=768?24:32));}
  function draw(){
   frame=0;ctx.clearRect(0,0,width,height);
-  const base=opening.getBoundingClientRect().top+scrollY, target=destination();
-  const progress=Math.max(0,Math.min(1,(scrollY-base+24)/Math.max(1,target-base)));
+  const base=opening.offsetTop,target=destination();
+  const progress=Math.max(0,Math.min(1,(scrollY-base)/Math.max(1,target-base)));
+  const p=reducedMotion.matches?0:progress;
+  opening.style.setProperty('--reel-exit',p.toFixed(4));
+  grid.style.setProperty('--work-enter',reducedMotion.matches?'1':String(Math.max(0,Math.min(1,(progress-.15)/.72))));
   if(reducedMotion.matches||progress<=0||progress>=1||viewer.open){canvas.style.opacity='0';return;}
-  const strength=Math.pow(Math.sin(progress*Math.PI),1.7);canvas.style.opacity=String(strength*.72);
-  const x=width*.5,y=height*.48,r=Math.max(width,height)*(.05+progress*.92);
+  const strength=Math.pow(Math.sin(progress*Math.PI),1.6);canvas.style.opacity=String(strength*.58);
   ctx.globalCompositeOperation='lighter';
-  const glow=ctx.createRadialGradient(x,y,Math.max(0,r-70),x,y,r+80);
-  glow.addColorStop(0,'rgba(110,166,215,0)');glow.addColorStop(.42,'rgba(143,191,234,.075)');glow.addColorStop(.48,'rgba(210,233,255,.32)');glow.addColorStop(.53,'rgba(135,190,230,.065)');glow.addColorStop(1,'rgba(135,190,230,0)');
-  ctx.fillStyle=glow;ctx.fillRect(0,0,width,height);
-  for(let k=0;k<3;k++){
-   ctx.beginPath();ctx.ellipse(x,y,r*(1-k*.028),r*(.56+k*.008),-.13,0,Math.PI*2);ctx.strokeStyle=`rgba(185,217,245,${.24-k*.065})`;ctx.lineWidth=k===0?1.2:.6;ctx.stroke();
-  }
-  points.forEach((p,i)=>{const distance=r*p.speed,px=x+Math.cos(p.angle)*distance,py=y+Math.sin(p.angle)*distance*.64;ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(px+Math.cos(p.angle)*(3+progress*14),py+Math.sin(p.angle)*(3+progress*14));ctx.strokeStyle=`rgba(203,226,250,${.18+(i%4)*.07})`;ctx.lineWidth=p.size;ctx.stroke();});
+  const fields=[{x:.25+progress*.3,y:.65-progress*.35,r:.6,c:'92,132,214'}, {x:.78-progress*.2,y:.35+progress*.18,r:.47,c:'130,106,194'}];
+  fields.forEach(f=>{const x=width*f.x,y=height*f.y,r=Math.max(width,height)*f.r;const light=ctx.createRadialGradient(x,y,0,x,y,r);light.addColorStop(0,'rgba('+f.c+',.42)');light.addColorStop(.42,'rgba('+f.c+',.18)');light.addColorStop(1,'rgba('+f.c+',0)');ctx.fillStyle=light;ctx.fillRect(0,0,width,height);});
   ctx.globalCompositeOperation='source-over';
  }
  function requestDraw(){if(!frame)frame=requestAnimationFrame(draw);}
@@ -128,7 +124,7 @@ heroResume();
   window.scrollTo({top:destination(),behavior:reducedMotion.matches?'instant':'smooth'});
   clearTimeout(settleTimer);settleTimer=setTimeout(()=>{travel=false;},1500);
  }
- cue.href='#clips-grid';cue.addEventListener('click',event=>{event.preventDefault();goToWork();});
+ cue.href='#work';cue.setAttribute('aria-label','포트폴리오 보기');cue.addEventListener('click',event=>{event.preventDefault();goToWork();});
  opening.addEventListener('pointerdown',event=>{if(event.target.closest('a,button')||event.button!==0)return;origin={x:event.clientX,y:event.clientY,type:event.pointerType};});
  window.addEventListener('pointerup',event=>{
   if(!origin)return;const dx=event.clientX-origin.x,dy=event.clientY-origin.y;
