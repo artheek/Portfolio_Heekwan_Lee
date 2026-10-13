@@ -163,3 +163,12 @@ footer{padding-top:64px}.footer-main h2{font-size:28px}.footer-main p{font-size:
  .footer-main{gap:24px}.footer-cta{white-space:normal;overflow-wrap:anywhere}
 }
 @media(prefers-reduced-motion:reduce){.reel-transition{display:none}nav a::after{transition:none}}
+
+/* Focus-depth transition inspired by VANA. Scroll geometry stays unchanged. */
+.opening-reel{--reel-exit:0}
+.opening-reel .hero-player,.opening-reel .hero-poster{transform:translate3d(0,calc(var(--reel-exit)*100px),0) scale(calc(1 + var(--reel-exit)*.075));filter:blur(calc(var(--reel-exit)*9px));transform-origin:center}
+.opening-reel .hero-caption{opacity:calc(1 - var(--reel-exit)*1.7);filter:blur(calc(var(--reel-exit)*16px));transform:translate3d(0,calc(-50% - var(--reel-exit)*64px),0) scale(calc(1 - var(--reel-exit)*.045))}
+#work{--work-enter:1;scroll-margin-top:32px}
+#work .portfolio-title,#work .category-grid{filter:blur(calc((1 - var(--work-enter))*10px));opacity:calc(.3 + var(--work-enter)*.7);translate:0 calc((1 - var(--work-enter))*28px)}
+@media(max-width:768px){#work{scroll-margin-top:24px}}
+@media(prefers-reduced-motion:reduce){.opening-reel .hero-player,.opening-reel .hero-poster{filter:none;transform:none}.opening-reel .hero-caption{filter:none;opacity:1;transform:translateY(-50%)}#work .portfolio-title,#work .category-grid{filter:none;opacity:1;translate:none}}
