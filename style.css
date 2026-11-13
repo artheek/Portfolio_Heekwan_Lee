@@ -180,3 +180,19 @@ footer{padding-top:64px}.footer-main h2{font-size:28px}.footer-main p{font-size:
 .clip:nth-child(3n+2){transition-delay:65ms}.clip:nth-child(3n){transition-delay:130ms}
 @media(max-width:768px){.category-item.reveal-wait,.clip.reveal-wait{transform:translate3d(0,28px,0);filter:blur(3px)}.clip:nth-child(n){transition-delay:0ms}.clip:nth-child(2n){transition-delay:65ms}}
 @media(prefers-reduced-motion:reduce){.category-item.reveal-item,.clip.reveal-item{opacity:1;transform:none;filter:none;transition:none}}
+
+/* Persistent transport remains visible in the fullscreen dialog. */
+.video-viewer .viewer-content{display:grid;grid-template-rows:minmax(0,1fr) auto;gap:16px;min-height:0}
+.video-viewer .viewer-content video{min-height:0;max-height:100%;align-self:stretch}
+.viewer-transport{display:flex;align-items:center;gap:18px;width:100%;padding:8px 0 max(8px,env(safe-area-inset-bottom));color:#e8e8ec}
+.viewer-toggle{display:grid;place-items:center;flex:0 0 40px;width:40px;height:40px;background:transparent;border:1px solid #ffffff30;border-radius:50%;color:inherit;cursor:pointer}
+.viewer-toggle svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5}
+.viewer-time{font:12px/1.4 'Google Sans',sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap;color:#c6c6ce;min-width:84px}
+.viewer-seek{--progress:0%;appearance:none;flex:1;min-width:0;height:32px;background:transparent;cursor:pointer}
+.viewer-seek::-webkit-slider-runnable-track{height:3px;border-radius:3px;background:linear-gradient(to right,#eee var(--progress),#ffffff40 var(--progress))}
+.viewer-seek::-webkit-slider-thumb{appearance:none;width:12px;height:12px;border-radius:50%;background:#fff;margin-top:-4.5px}
+.viewer-seek::-moz-range-track{height:3px;background:#ffffff40}.viewer-seek::-moz-range-progress{height:3px;background:#eee}.viewer-seek::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:#fff}
+.viewer-seek:focus-visible,.viewer-toggle:focus-visible{outline:2px solid #a6c7ff;outline-offset:5px}
+@media(max-width:768px){.video-viewer{padding:56px 16px 16px}.viewer-transport{gap:10px}.viewer-time{font-size:11px;min-width:76px}}
+
+.viewer-mute{display:grid;place-items:center;flex:0 0 36px;width:36px;height:36px;border:0;background:transparent;color:inherit;cursor:pointer}.viewer-mute svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linejoin:round}.viewer-mute[aria-pressed="true"]{opacity:.4}.viewer-mute:focus-visible{outline:2px solid #a6c7ff;outline-offset:3px}

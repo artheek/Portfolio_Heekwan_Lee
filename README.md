@@ -1,17 +1,16 @@
 # Heekwan Lee VFX Portfolio
 
-Static GitHub Pages portfolio. Google Sans typography; hover-only exterior Sparkles; native video playback.
+Static GitHub Pages portfolio. Existing Google Sans typography, exterior hover Sparkles, portfolio grid, scroll transitions and profile layout are preserved.
 
 ## Media
-- Source: Heekwan_Lee_GFX_Portfolio_05.mp4, 3840x2160, 60fps.
-- Background and fullscreen: reel-4k.m3u8 (4K/60fps with audio; background muted).
-- Hover previews: reel-2k.m3u8 (2560x1440/60fps, no audio).
-- HLS segments are hosted beside the playlists. Keep every referenced .ts file.
-- hls.js provides playback on MSE browsers; Safari uses native HLS when needed.
-- Fullscreen uses the browser Fullscreen API. Embedded browsers without it use a viewport-sized player.
-- Realtime VFX uses GFX_Reel (gfx-4k.m3u8 / gfx-2k.m3u8), starts at 63s for click and preview; both preview and fullscreen loop back to 0s after the initial 63s start. Film VFX uses Film_Reel (film-4k.m3u8 / film-2k.m3u8), starts and loops at 0s. Individual shots use their matching 4K MP4 and 2560x1440 muted preview, ordered Arknight_cinematic, basic_slash, fire_slash, SF_FPS, blood_magical.
 
-## Update
-Change videos.js to connect final per-shot preview, full video and poster URLs. MP4/WebM and HLS supported.
-Source for React effects is in effects-source.zip. Existing profile copy remains unchanged.
+- Main reel: Heekwan_Lee_GFX_Portfolio_06.mp4. The 4K/60fps background autoplays muted from 2 seconds; opening the full reel starts at 0 seconds with audio.
+- Realtime VFX: only_gfx.mp4, starting at 0 seconds. 4K/60fps fullscreen and 2560x1440/60fps muted hover preview, looping to 0.
+- Film VFX: Film_Reel, starting and looping at 0 seconds; existing media retained.
+- Individual shots: Arknight_cinematic, basic_slash, fire_slash, SF_FPS, blood_magical, water_slash. Six gapless cards, with 4K playback and muted 2K hover previews.
+- Fullscreen viewer has a persistent seek bar, elapsed/total time, play/pause and mute controls. Where browser fullscreen is unavailable, the same viewer fills the viewport.
+- HLS playlists reference adjacent TS segments. Upload all segments and playlists together. Version queries avoid stale segment caches after media replacement.
 
+## Updating
+
+Edit videos.js to change media mappings. hls.js supports HLS on MSE browsers; Safari can use native HLS. React effects source is preserved in effects-source.zip.
