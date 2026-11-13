@@ -16,7 +16,7 @@ matchMedia('(min-width:769px)').addEventListener('change',e=>{if(e.matches)close
 function attachSource(video,src,startPosition=-1){
  if(video.dataset.source)return;
  video.dataset.source=src;
- if(src.endsWith('.m3u8')&&window.Hls?.isSupported()){
+ if(src.split('?')[0].endsWith('.m3u8')&&window.Hls?.isSupported()){
   const hls=new Hls({startPosition,maxBufferLength:12,maxMaxBufferLength:24,backBufferLength:8});
   video.stream=hls;hls.loadSource(src);hls.attachMedia(video);
   hls.on(Hls.Events.ERROR,(_,data)=>{if(data.fatal){video.dataset.error=data.type;video.dispatchEvent(new Event('error'));}});
@@ -28,9 +28,9 @@ document.body.append(viewer);
 const viewerContent=viewer.querySelector('.viewer-content');
 const hero=document.createElement('video');hero.muted=true;hero.loop=true;hero.playsInline=true;hero.preload='metadata';hero.tabIndex=-1;hero.poster=heroConfig.poster;hero.setAttribute('aria-hidden','true');
 document.querySelector('#hero-player').append(hero);
-hero.addEventListener('loadedmetadata',()=>{hero.currentTime=26;},{once:true});
-hero.addEventListener('timeupdate',()=>{if(hero.currentTime<.2)hero.currentTime=26;});
-function heroResume(){if(!document.hidden&&heroVisible&&!userPaused&&!viewer.open&&!reducedMotion.matches){attachSource(hero,heroConfig.src,26);hero.stream?.startLoad(-1);hero.play().catch(()=>{});}}
+hero.addEventListener('loadedmetadata',()=>{hero.currentTime=2;},{once:true});
+hero.addEventListener('timeupdate',()=>{if(hero.currentTime<.2)hero.currentTime=2;});
+function heroResume(){if(!document.hidden&&heroVisible&&!userPaused&&!viewer.open&&!reducedMotion.matches){attachSource(hero,heroConfig.src,2);hero.stream?.startLoad(-1);hero.play().catch(()=>{});}}
 hero.addEventListener('playing',()=>{opening.classList.add('is-playing');opening.dataset.playback='playing';pauseButton.hidden=false;});
 hero.addEventListener('error',()=>{opening.classList.remove('is-playing');opening.dataset.playback='unavailable';});
 pauseButton.innerHTML=pauseIcon;pauseButton.setAttribute('aria-label','Pause background video');
@@ -59,7 +59,19 @@ const stopPreviews=[];
 });
 function openViewer({src=heroConfig.fullSrc,title='Heekwan Lee VFX Portfolio',start=0,end,loop=false}){
  hero.pause();stopPreviews.forEach(stop=>stop());viewerContent.replaceChildren();viewer.showModal();document.body.classList.add('viewer-open');
- const video=document.createElement('video');video.controls=true;video.autoplay=true;video.loop=loop;video.playsInline=true;video.preload='auto';video.setAttribute('aria-label',title);viewerContent.append(video);
+ const video=document.createElement('video');video.controls=false;video.autoplay=true;video.loop=loop;video.playsInline=true;video.preload='auto';video.setAttribute('aria-label',title);viewerContent.append(video);
+ const transport=document.createElement('div');transport.className='viewer-transport';
+ transport.innerHTML='<button type="button" class="viewer-toggle" aria-label="Pause video"></button><time class="viewer-time">0:00 / 0:00</time><input class="viewer-seek" type="range" min="0" max="0" value="0" step="0.1" aria-label="Video progress" disabled><button type="button" class="viewer-mute" aria-label="Mute video"></button>';
+ viewerContent.append(transport);
+ const mute=transport.querySelector('.viewer-mute');
+ mute.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4zM15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14"/></svg>';
+ mute.addEventListener('click',()=>{video.muted=!video.muted;mute.setAttribute('aria-label',video.muted?'Unmute video':'Mute video');mute.setAttribute('aria-pressed',String(video.muted));});
+ const toggle=transport.querySelector('button'),seek=transport.querySelector('input'),time=transport.querySelector('time');
+ const formatTime=value=>{const n=Math.max(0,Math.floor(value||0));return Math.floor(n/60)+':'+String(n%60).padStart(2,'0');};
+ const sync=()=>{const duration=Number.isFinite(video.duration)?video.duration:0;seek.disabled=!duration;seek.max=duration;seek.value=video.currentTime;seek.style.setProperty('--progress',duration?100*video.currentTime/duration+'%':'0%');time.textContent=formatTime(video.currentTime)+' / '+formatTime(duration);seek.setAttribute('aria-valuetext',time.textContent);toggle.innerHTML=video.paused?playIcon:pauseIcon;toggle.setAttribute('aria-label',video.paused?'Play video':'Pause video');};
+ toggle.addEventListener('click',()=>{if(video.paused)video.play().catch(()=>{});else video.pause();});
+ seek.addEventListener('input',()=>{video.currentTime=Number(seek.value);sync();});
+ ['timeupdate','durationchange','loadedmetadata','play','pause','ended'].forEach(event=>video.addEventListener(event,sync));sync();
  video.addEventListener('loadedmetadata',()=>{if(start)video.currentTime=start;video.play().catch(()=>{});},{once:true});
  if(end)video.addEventListener('timeupdate',()=>{if(video.currentTime>=end){video.pause();}});
  attachSource(video,src,start);video.play().catch(()=>{});
